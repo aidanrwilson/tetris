@@ -14,6 +14,8 @@ import tertis.tetris.game.view.TetrisView;
  */
 public class ServerTetrisModel implements TetrisModel, Runnable {
 
+	private PlayerQueue players;
+	
 	private Piece nextPiece = new Piece();
 	private ActivePiece piece;
 
@@ -34,6 +36,7 @@ public class ServerTetrisModel implements TetrisModel, Runnable {
 		board = new IntMatrix(height, width);
 		viewBoard = new IntMatrix(height, width);
 		piece = new ActivePiece(board);
+		players = new PlayerQueue;
 	}
 
 	/**
@@ -257,17 +260,20 @@ public class ServerTetrisModel implements TetrisModel, Runnable {
 
 	@Override
 	public void connect(TetrisView player) {
-		//TODO add the player to the queue
+		players.addPlayer(player);
 	}
 
 	@Override
 	public void disconnect(TetrisView player) {
-		//TODO remove the player from queue
+		players.removePlayer(player);
 	}
 
 	@Override
 	public PlayerQueue getPlayerQueue() throws RemoteException {
-		//TODO return the player queue
-		return null;
+		return players;
+	}
+	
+	public void alertNextTurn() {
+		players.getNextPlayer().yourTurn();
 	}
 }
