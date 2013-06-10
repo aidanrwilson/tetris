@@ -172,22 +172,26 @@ public class SimpleView extends JPanel implements TetrisView {
 			public void actionPerformed(ActionEvent e) {
 				if (model == null)
 					return;
-				for(int i=0; i<20; i++)
-					model.down();
+				model.down();
+				model.down();
+				model.down();
+				model.down();
+				model.down();
+				model.down();
+				model.down();
+				model.down();
+				model.down();
+				model.down();
+				model.down();
+				model.down();
+				model.down();
+				model.down();
+				model.down();
+				model.down();
 			}
 
 		});
-		
-	}
-	
-	public void disableKeyboard() {
-		InputMap input = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-		input.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), null);
-		input.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), null);
-		input.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), null);
-		input.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), null);
-		input.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), null);
-		input.put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0), null);
+
 	}
 
 	@Override
@@ -196,13 +200,8 @@ public class SimpleView extends JPanel implements TetrisView {
 	}
 
 	@Override
-	public void yourTurn(Boolean isTurn) throws RemoteException {
-		if(isTurn) {
-			setupKeyboard();
-		}
-		else {
-			disableKeyboard();
-		}
+	public void yourTurn() throws RemoteException {
+		// TODO send input to server and other stuff
 	}
 	
 	//TODO remove if unnecessary
