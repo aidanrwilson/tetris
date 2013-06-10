@@ -1,7 +1,7 @@
 package tertis.tetris.game.server;
 
 import java.util.LinkedList;
-
+import java.util.Queue;
 import tertis.tetris.game.view.TetrisView;
 
 /**
@@ -9,5 +9,19 @@ import tertis.tetris.game.view.TetrisView;
  */
 @SuppressWarnings("serial")
 public class PlayerQueue extends LinkedList<TetrisView> {
-
+	public void addPlayer(TetrisView tv) {
+		add(tv);
+	}
+	
+	public void removePlayer(TetrisView tv) {
+		remove(tv);
+	}
+	
+	public boolean reQueue() {
+		add(removeFirst());
+	}
+	
+	public TetrisView nextPlayer() {
+		return getFirst();
+	}
 }
